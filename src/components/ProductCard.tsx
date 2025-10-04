@@ -33,6 +33,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         title: product.title,
         price: parseFloat(firstVariant.price.amount),
         quantity: 1,
+        image: firstImage?.url,
         variant: {
           title: firstVariant.title,
           selectedOptions: firstVariant.selectedOptions || []

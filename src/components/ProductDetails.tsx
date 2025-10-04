@@ -34,6 +34,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         title: product.title,
         price: parseFloat(selectedVariant.price.amount),
         quantity: quantity,
+        image: images[selectedImageIndex]?.node.url,
         variant: {
           title: selectedVariant.title,
           selectedOptions: selectedVariant.selectedOptions || []

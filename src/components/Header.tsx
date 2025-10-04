@@ -48,41 +48,16 @@ export const Header: React.FC = () => {
               </div>
             </button>
 
-            {/* Logo - Center on mobile, left on desktop */}
+            {/* Logo - Center on both mobile and desktop */}
             <div className="logo-container">
               <Link href="/" className="logo-link">
-                LLP Webshop
+                <img 
+                  src="/svg/luckypocketlogotype.svg" 
+                  alt="Lucky Pocket Press" 
+                  className="logo-svg"
+                />
               </Link>
             </div>
-
-            {/* Desktop Navigation - Hidden on mobile */}
-            <nav className="desktop-nav">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="nav-link"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Cart Button - Top Right */}
-            <button
-              onClick={() => setIsCartOpen(true)}
-              className="cart-btn"
-            >
-              <span className="cart-text">Cart</span>
-              <svg className="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 8.5M7 13v0a2 2 0 002 2h8a2 2 0 002-2v0" />
-              </svg>
-              {cart.totalItems > 0 && (
-                <span className="cart-badge">
-                  {cart.totalItems}
-                </span>
-              )}
-            </button>
           </div>
         </div>
 
@@ -108,15 +83,12 @@ export const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Umbrella-style full circles at bottom */}
-        <div className="umbrella-container">
-          <div className="umbrella-circles">
-            <div className="umbrella-circles-inner">
-              {Array.from({ length: 20 }, (_, i) => (
-                <div 
-                  key={i}
-                  className="umbrella-circle"
-                ></div>
+        {/* Tablecloth Bottom Border - Inside header */}
+        <div className={`tablecloth-border ${isMobileMenuOpen ? 'tablecloth-border-moved' : ''}`}>
+          <div className="scallop-container">
+            <div className="scallop-row">
+              {Array.from({ length: 50 }, (_, i) => (
+                <div key={i} className="scallop-circle"></div>
               ))}
             </div>
           </div>
@@ -124,7 +96,11 @@ export const Header: React.FC = () => {
       </header>
 
       {/* Cart Drawer */}
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <CartDrawer 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)}
+        onOpen={() => setIsCartOpen(true)}
+      />
     </>
   );
 };

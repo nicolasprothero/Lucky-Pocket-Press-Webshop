@@ -7,9 +7,10 @@ import './CartDrawer.css';
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpen: () => void;
 }
 
-export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
+export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen }) => {
   const { cart, removeItem, updateQuantity, clearCart, checkout, isLoading } = useCart();
   const [checkoutError, setCheckoutError] = React.useState<string | null>(null);
 
@@ -34,20 +35,32 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
       <div
         className={`cart-drawer ${isOpen ? 'cart-drawer-open' : 'cart-drawer-closed'}`}
       >
+        {/* Cart Tab Button - now inside the drawer */}
+        <button
+          onClick={() => !isOpen && onOpen()}
+          className="cart-tab"
+          aria-label="Open cart"
+        >
+          <svg className="cart-tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 8.5M7 13v0a2 2 0 002 2h8a2 2 0 002-2v0" />
+          </svg>
+          {cart.totalItems > 0 && (
+            <span className="cart-tab-badge">
+              {cart.totalItems}
+            </span>
+          )}
+        </button>
         <div className="cart-drawer-content">
           {/* Header */}
           <div className="cart-header">
             <div className="cart-title-section">
-              <span className="cart-title">🛒 Cart</span>
-              <span className="cart-count-badge">
-                {cart.totalItems}
-              </span>
+              <span className="cart-title">CART &gt; LUCKY POCKET PRESS</span>
             </div>
             <button
               onClick={onClose}
               className="cart-close-btn"
             >
-              ×
+              CLOSE
             </button>
           </div>
 
@@ -69,40 +82,47 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
                     onClick={clearCart}
                     className="cart-clear-btn"
                   >
-                    🗑️ Clear all
+                    Clear Cart
                   </button>
                 </div>
 
                 <div className="cart-items-list">
                   {cart.items.map((item) => (
                     <div key={item.id} className="cart-item">
-                      <div className="cart-item-details">
-                        <h3 className="cart-item-title">{item.title}</h3>
-                        {item.variant.title !== 'Default' && (
-                          <p className="cart-item-variant">{item.variant.title}</p>
-                        )}
-                        <p className="cart-item-price">
-                          ${item.price.toFixed(2)}
-                        </p>
+                      {/* Top div with image and product details */}
+                      <div className="cart-item-top">
+                        <div className="cart-item-image">
+                          {item.image && (
+                            <img src={item.image} alt={item.title} />
+                          )}
+                        </div>
+                        <div className="cart-item-info">
+                          <div className="cart-item-title">{item.title}</div>
+                          <div className="cart-item-price">${item.price.toFixed(2)}</div>
+                        </div>
+                        <div className="cart-item-remove-container">
+                          <button
+                            onClick={() => removeItem(item.id)}
+                            className="cart-item-remove"
+                          >
+                            ×
+                          </button>
+                        </div>
                       </div>
                       
-                      <div className="cart-item-controls">
-                        <button
-                          onClick={() => removeItem(item.id)}
-                          className="cart-item-remove"
-                        >
-                          ×
-                        </button>
-                        
-                        <div className="quantity-controls">
+                      {/* Bottom div with quantity controls */}
+                      <div className="cart-item-bottom">
+                        <div className="cart-item-qty-section">
+                          <span className="qty-label">QTY: {item.quantity}</span>
+                        </div>
+                        <div className="cart-item-controls">
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
                             className="quantity-btn"
                             disabled={item.quantity <= 1}
                           >
-                            −
+                            -
                           </button>
-                          <span className="quantity-display">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                             className="quantity-btn"
@@ -139,7 +159,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
                 disabled={isLoading || cart.totalItems === 0}
                 className="checkout-btn"
               >
-                {isLoading ? 'Creating checkout...' : 'Checkout with Shopify'}
+                {isLoading ? 'CHECKING OUT...' : 'CHECKOUT'}
               </button>
             </div>
           )}

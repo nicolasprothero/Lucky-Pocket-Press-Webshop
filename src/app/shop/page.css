@@ -1,7 +1,7 @@
 /* Shop Page Styles */
 .shop-page {
   min-height: 100vh;
-  background-color: #FFFCF7;
+  background-color: var(--llp-background);
 }
 
 .shop-container {
