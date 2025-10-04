@@ -1,0 +1,102 @@
+/* Shop Page Styles */
+.shop-page {
+  min-height: 100vh;
+  background-color: #FFFCF7;
+}
+
+.shop-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .shop-container {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shop-container {
+    padding: 2rem;
+  }
+}
+
+/* Header Section */
+.shop-header {
+  margin-bottom: 2rem;
+}
+
+.shop-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #444444;
+  margin-bottom: 1rem;
+}
+
+.shop-subtitle {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* Products Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.empty-state-text {
+  color: #6b7280;
+  font-size: 1.125rem;
+}
+
+/* Loading State */
+.loading-state {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.loading-text {
+  color: #6b7280;
+  font-size: 1.125rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .shop-title {
+    font-size: 1.5rem;
+  }
+  
+  .shop-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .shop-header {
+    margin-bottom: 1.5rem;
+  }
+}
