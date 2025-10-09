@@ -12,8 +12,7 @@ async function shopifyFetch(query: string, variables: Record<string, unknown> = 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // Use private access token header (matches working manual test)
-      'Shopify-Storefront-Private-Token': SHOPIFY_TOKEN,
+      'X-Shopify-Storefront-Access-Token': SHOPIFY_TOKEN,
     },
     body: JSON.stringify({ query, variables }),
   });
