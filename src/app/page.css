@@ -1,7 +1,7 @@
 /* Homepage container */
 .home-page {
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 90dvh;
   background-color: #FFFCF7;
   position: relative;
   border-top: none;
