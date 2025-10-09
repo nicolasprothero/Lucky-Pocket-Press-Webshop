@@ -61,7 +61,14 @@ export const Header: React.FC = () => {
 
             {/* Logo - Center on both mobile and desktop */}
             <div className="logo-container">
-              <Link href="/" className="logo-link">
+              <Link
+                href="/"
+                className="logo-link"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsDesktopMenuOpen(false);
+                }}
+              >
                 <Image 
                   src="/svg/luckypocketlogotype.svg" 
                   alt="Lucky Pocket Press" 
@@ -69,6 +76,7 @@ export const Header: React.FC = () => {
                   width={200}
                   height={40}
                   priority
+                  unoptimized
                 />
               </Link>
             </div>

@@ -1,6 +1,7 @@
 /* Homepage container */
 .home-page {
-  height: calc(100dvh - 4rem);
+  min-height: 100vh;
+  min-height: 100dvh;
   background-color: #FFFCF7;
   position: relative;
   border-top: none;
