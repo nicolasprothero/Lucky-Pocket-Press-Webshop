@@ -46,8 +46,9 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  width: calc(100% + 40px);
-  margin-left: -20px;
+  width: calc(100% + 80px);
+  margin-left: -40px;
+  min-width: 4000px; /* Ensure coverage for very large screens */
 }
 
 .scallop-circle {
@@ -147,6 +148,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 60;
+  padding-top: 0.5rem;
 }
 
 .logo-link {
@@ -217,7 +219,6 @@
   color: #6b7280;
 }
 
-/* Desktop Dropdown Menu */
 .desktop-menu {
   display: none;
   overflow: visible;
@@ -247,7 +248,7 @@
 
 .desktop-menu-inner {
   background-color: var(--llp-red);
-  padding: 1.5rem 2rem;
+  padding: 0rem 2rem 1.5rem 2rem;
 }
 
 .desktop-nav {
@@ -264,11 +265,12 @@
   align-items: center;
   text-decoration: none;
   transition: transform 0.2s ease, opacity 0.2s ease;
-  padding: 0.5rem;
+  padding: 1rem 0;
   border-radius: 0.5rem;
   opacity: 0;
   transform: translateY(10px);
   animation-fill-mode: forwards;
+  width: 6rem;
 }
 
 .desktop-menu-open .desktop-nav-link:nth-child(1) {

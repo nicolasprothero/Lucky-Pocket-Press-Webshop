@@ -378,7 +378,7 @@ export async function createCheckout(lineItems: Array<{ variantId: string; quant
     
     if (data.data?.cartCreate?.userErrors?.length > 0) {
       const errors = data.data.cartCreate.userErrors;
-      throw new Error(`Cart errors: ${errors.map((e: any) => e.message).join(', ')}`);
+  throw new Error(`Cart errors: ${errors.map((e: { message: string }) => e.message).join(', ')}`);
     }
 
     const cart = data.data?.cartCreate?.cart;

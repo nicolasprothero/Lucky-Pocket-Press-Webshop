@@ -16,8 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LLP Webshop",
+  title: "Lucky Pocket Press",
   description: "E-commerce website built with Next.js and Shopify",
+  icons: {
+    icon: "/favicon/favicon.png",
+  },
 };
 
 export default function RootLayout({

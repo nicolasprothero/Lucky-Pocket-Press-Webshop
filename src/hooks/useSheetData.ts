@@ -8,7 +8,7 @@ interface UseSheetDataOptions {
   range?: string;
 }
 
-export function useSheetData<T = any>({ sheetId, range }: UseSheetDataOptions) {
+export function useSheetData<T = unknown>({ sheetId, range }: UseSheetDataOptions) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

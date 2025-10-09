@@ -230,13 +230,14 @@
 /* Add to Cart Button */
 .details-add-to-cart-btn {
   width: 100%;
-  font-weight: 600;
+  font-weight: 200;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   border: 0.1rem solid var(--llp-red);
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 1.125rem;
+  font-size: 1rem;
+  color: var(--llp-white);
 }
 
 .details-add-to-cart-available {

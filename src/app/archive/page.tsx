@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useSheetData } from '@/hooks/useSheetData';
 import { ArchiveBook, ArchiveEvent, ArchiveMerch, ArchiveCategory, ArchiveItem } from '@/types';
 import './page.css';
@@ -152,10 +153,12 @@ export default function ArchivePage() {
                     <div key={`${currentPage}-${index}`} className="page-spread">
                       <div className="page-image">
                         {item.image ? (
-                          <img
+                          <Image
                             src={item.image}
                             alt={item.title}
                             className="archive-image"
+                            width={300}
+                            height={400}
                           />
                         ) : (
                           <div className="no-image">No Image</div>
@@ -176,7 +179,7 @@ export default function ArchivePage() {
                     <div className="page-spread last-page">
                       <div className="last-page-content">
                         <h2 className="last-page-message">
-                          This is the last page,<br />
+                          You reached the end,<br />
                           thanks for looking :)
                         </h2>
                       </div>

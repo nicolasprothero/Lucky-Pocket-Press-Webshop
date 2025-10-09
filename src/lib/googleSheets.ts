@@ -41,7 +41,7 @@ export async function fetchSheetData(sheetId: string, range: string = 'Sheet1!A:
     
     // Convert to objects using first row as headers
     const headers = rows[0];
-    return rows.slice(1).map((row: any[]) => {
+  return rows.slice(1).map((row: string[]) => {
       const obj: SheetData = {};
       headers.forEach((header: string, index: number) => {
         obj[header] = row[index] || '';

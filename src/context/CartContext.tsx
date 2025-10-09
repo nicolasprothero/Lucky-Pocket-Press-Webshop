@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
 import { Cart, CartItem } from '@/types';
 import { createCheckout } from '@/lib/api';
 
@@ -124,8 +124,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     isLoading: false,
   });
 
+  const [isHydrated, setIsHydrated] = useState(false);
+
   // Load cart from localStorage on mount
   useEffect(() => {
+    setIsHydrated(true);
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
       try {
@@ -137,10 +140,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  // Save cart to localStorage whenever cart changes
+  // Save cart to localStorage whenever cart changes (only after hydration)
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(state.cart));
-  }, [state.cart]);
+    if (isHydrated) {
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    }
+  }, [state.cart, isHydrated]);
 
   const addItem = (item: CartItem) => {
     dispatch({ type: 'ADD_ITEM', payload: item });

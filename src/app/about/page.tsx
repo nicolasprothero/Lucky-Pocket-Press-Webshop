@@ -1,6 +1,7 @@
 
 "use client";
 import './page.css';
+import Image from 'next/image';
 import { useSheetData } from '@/hooks/useSheetData';
 
 interface Update {
@@ -10,12 +11,11 @@ interface Update {
 
 const UPDATES_RANGE = 'Updates!A:B';
 
-// Function to format date to DD-MM-YY format
 const formatDate = (dateString: string): string => {
   try {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
-      return dateString; // Return original if invalid date
+      return dateString;
     }
     
     const day = String(date.getDate()).padStart(2, '0');
@@ -24,7 +24,7 @@ const formatDate = (dateString: string): string => {
     
     return `${day}-${month}-${year}`;
   } catch {
-    return dateString; // Return original if error
+    return dateString;
   }
 };
 
@@ -34,13 +34,25 @@ export default function AboutPage() {
     range: UPDATES_RANGE,
   });
 
+  // Sort updates by date, newest first
+  const sortedUpdates = updates?.slice().sort((a, b) => {
+    if (!a.date || !b.date) return 0;
+    
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    
+    // If dates are invalid, keep original order
+    if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) return 0;
+    
+    return dateB.getTime() - dateA.getTime(); // Newest first
+  }) || [];
+
   return (
     <div className="about-responsive-container">
       <div className="about-header">
         <h1 className="about-main-title">ABOUT US</h1>
         <div className="about-main-description">
-          Lucky Pocket Press is an independent publisher and creative collective. We believe in the power of print, collaboration, and community. Our mission is to bring unique voices and stories to life through beautifully crafted publications.
-        </div>
+          Lucky Pocket Press is an indie risograph press, artist collective, and indie comics micro publisher. We’re a small team of independent artists and printmakers, formed in January of 2019 by Sara Hagstrom and Steph Bulante with the goal of publishing comics from artists that inspire us.        </div>
       </div>
       
       <div className="about-sections">
@@ -51,8 +63,8 @@ export default function AboutPage() {
             {error && <div style={{ color: 'red' }}>Failed to load updates.</div>}
             {!loading && !error && (
               <div className="updates-container">
-                {updates && updates.length > 0 ? (
-                  updates.map((update, idx) => (
+                {sortedUpdates && sortedUpdates.length > 0 ? (
+                  sortedUpdates.map((update, idx) => (
                     <div key={idx} className="update-row">
                       <div className="update-date">
                         {update.date ? formatDate(update.date) : ''}
@@ -74,20 +86,35 @@ export default function AboutPage() {
         
         <div className="about-box">
           <div className="about-title">Newsletter</div>
-          <div className="about-content">
-            {/* Replace with your newsletter signup or info */}
-            Subscribe to our newsletter for the latest updates, releases, and events! Coming soon.
+          <div className="about-content newsletter-content">
+            <a href="https://buttondown.com/luckypocketpress" target="_blank" rel="noopener noreferrer" className="newsletter-image-link">
+              <Image src="/image/newsletter.png" alt="Newsletter" className="newsletter-image" width={400} height={200} />
+            </a>
+            <div className="newsletter-text">
+              Sign up to our newsletter for updates about what we are doing, a first look at new publications, and some extra good luck!
+            </div>
           </div>
         </div>
         
         <div className="about-box">
           <div className="about-title">Our Links</div>
           <div className="about-content">
-            {/* Replace with your actual links */}
             <ul style={{ paddingLeft: 0, listStyle: 'none' }}>
-              <li><a href="https://instagram.com/luckypocketpress" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-              <li><a href="mailto:info@luckypocketpress.com">Email</a></li>
-              {/* Add more links as needed */}
+              <li>
+                <a href="https://instagram.com/luckypocketpress" target="_blank" rel="noopener noreferrer">
+                  <Image src="/svg/instagram.svg" alt="Instagram" className="social-logo" width={32} height={32} />
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/pocketini" target="_blank" rel="noopener noreferrer">
+                  <Image src="/svg/twitter.svg" alt="Twitter" className="social-logo" width={32} height={32} />
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@luckypocketpress.com">
+                  <Image src="/svg/email.svg" alt="Email" className="social-logo" width={32} height={32} />
+                </a>
+              </li>
             </ul>
           </div>
         </div>

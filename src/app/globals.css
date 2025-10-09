@@ -62,9 +62,20 @@ body {
   display: none;
 }
 
-/* Hide footer on homepage */
-.homepage footer {
-  display: none;
+/* Make footer sticky on homepage */
+body:has(.home-page) footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+/* Hide jump to top button on homepage without affecting layout */
+body:has(.home-page) .footer-jump-top-btn {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 @media (min-width: 768px) {

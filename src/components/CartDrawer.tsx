@@ -3,6 +3,7 @@
 import React from 'react';
 import { useCart } from '@/context/CartContext';
 import './CartDrawer.css';
+import Image from 'next/image';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -13,6 +14,12 @@ interface CartDrawerProps {
 export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen }) => {
   const { cart, removeItem, updateQuantity, clearCart, checkout, isLoading } = useCart();
   const [checkoutError, setCheckoutError] = React.useState<string | null>(null);
+  const [hasMounted, setHasMounted] = React.useState(false);
+
+  // Track if component has mounted to prevent hydration mismatches
+  React.useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   // Add/remove blur class to body when cart opens/closes
   React.useEffect(() => {
@@ -55,10 +62,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
           className="cart-tab"
           aria-label="Open cart"
         >
-          <svg className="cart-tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 8.5M7 13v0a2 2 0 002 2h8a2 2 0 002-2v0" />
-          </svg>
-          {cart.totalItems > 0 && (
+    <Image src="/svg/cart.svg" alt="Cart" className="cart-tab-icon" width={32} height={32} />
+          {hasMounted && cart.totalItems > 0 && (
             <span className="cart-tab-badge">
               {cart.totalItems}
             </span>
@@ -106,7 +111,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
                       <div className="cart-item-top">
                         <div className="cart-item-image">
                           {item.image && (
-                            <img src={item.image} alt={item.title} />
+                            <Image src={item.image} alt={item.title} width={64} height={64} />
                           )}
                         </div>
                         <div className="cart-item-info">

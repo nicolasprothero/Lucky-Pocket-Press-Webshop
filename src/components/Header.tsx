@@ -2,12 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useCart } from '@/context/CartContext';
+import Image from 'next/image';
 import { CartDrawer } from './CartDrawer';
 import './Header.css';
 
 export const Header: React.FC = () => {
-  const { cart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
@@ -63,10 +62,13 @@ export const Header: React.FC = () => {
             {/* Logo - Center on both mobile and desktop */}
             <div className="logo-container">
               <Link href="/" className="logo-link">
-                <img 
+                <Image 
                   src="/svg/luckypocketlogotype.svg" 
                   alt="Lucky Pocket Press" 
                   className="logo-svg"
+                  width={200}
+                  height={40}
+                  priority
                 />
               </Link>
             </div>
@@ -88,10 +90,12 @@ export const Header: React.FC = () => {
                   onClick={() => setIsDesktopMenuOpen(false)}
                   className="desktop-nav-link"
                 >
-                  <img 
+                  <Image 
                     src={item.icon} 
                     alt={item.name}
                     className="desktop-nav-icon"
+                    width={24}
+                    height={24}
                   />
                   <span className="desktop-nav-text">{item.name}</span>
                 </Link>
@@ -103,7 +107,7 @@ export const Header: React.FC = () => {
           <div className="tablecloth-border">
             <div className="scallop-container">
               <div className="scallop-row">
-                {Array.from({ length: 50 }, (_, i) => (
+                {Array.from({ length: 100 }, (_, i) => (
                   <div key={i} className="scallop-circle"></div>
                 ))}
               </div>
@@ -137,7 +141,7 @@ export const Header: React.FC = () => {
         <div className={`tablecloth-border ${isMobileMenuOpen ? 'tablecloth-border-moved' : ''} ${isDesktopMenuOpen ? 'tablecloth-border-hidden' : ''}`}>
           <div className="scallop-container">
             <div className="scallop-row">
-              {Array.from({ length: 50 }, (_, i) => (
+              {Array.from({ length: 100 }, (_, i) => (
                 <div key={i} className="scallop-circle"></div>
               ))}
             </div>

@@ -26,9 +26,9 @@
 
 .category-btn {
   background: none;
-  border: 0.1rem solid var(--llp-red);
+  background-color: rgba(248, 82, 70, 0.1);
   color: var(--llp-red);
-  padding: 0.5rem 1rem;
+  border-color: transparent;
   border-radius: 0.5rem;
   font-size: 0.9rem;
   font-weight: 200;
@@ -36,6 +36,7 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  padding: 0.5rem;
 }
 
 .category-btn:hover {
@@ -200,9 +201,9 @@
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 0.4rem;
-  border: 1px solid var(--llp-red);
-  background-color: transparent;
+  background-color: rgba(248, 82, 70, 0.1);
   color: var(--llp-red);
+  border-color: transparent;
   font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
@@ -210,6 +211,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
 }
 
 .page-nav-btn:hover:not(:disabled) {

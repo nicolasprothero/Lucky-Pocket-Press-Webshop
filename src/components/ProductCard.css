@@ -146,12 +146,12 @@
 
 .card-view-btn {
   flex: 1;
-  font-weight: 600;
+  font-weight: 200;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  border: 0.1rem solid var(--llp-red);
-  background-color: transparent;
-  color: #F85246;
+  background-color: rgba(248, 82, 70, 0.1);
+  color: var(--llp-red);
+  border-color: transparent;
   text-decoration: none;
   text-align: center;
   cursor: pointer;
@@ -167,10 +167,9 @@
   color: var(--llp-white);
 }
 
-/* Add to Cart Button */
 .card-add-btn {
   flex: 1;
-  font-weight: 600;
+  font-weight: 200;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   border: 0.1rem solid var(--llp-red);
@@ -202,25 +201,24 @@
   cursor: not-allowed;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .product-card {
     width: 100%;
     min-width: auto;
     max-width: 100%;
     margin: 0;
-    height: auto; /* Allow height to adjust to content on mobile */
+    height: auto;
   }
 
   .card-info-row {
-    flex: 1; /* Take remaining space to push buttons down */
-    margin-bottom: auto; /* Add flexible space below author/price */
+    flex: 1;
+    margin-bottom: auto;
   }
 
   .card-button-row {
     flex-direction: column;
     gap: 0.5rem;
-    margin-top: 1rem; /* Add consistent space above buttons */
+    margin-top: 1rem;
   }
   
   .card-view-btn,
@@ -237,7 +235,6 @@
   }
 }
 
-/* Animation for adding state */
 .card-add-btn-adding {
   position: relative;
   overflow: hidden;

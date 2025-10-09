@@ -21,8 +21,13 @@
   font-weight: 500;
   cursor: pointer;
   border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.7rem;
   transition: background-color 0.2s;
+}
+
+.footer-jump-top-btn img {
+  height: 1.5rem;
+  width: auto;
 }
 
 .footer-jump-top-btn:hover {
