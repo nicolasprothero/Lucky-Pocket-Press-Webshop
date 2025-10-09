@@ -10,39 +10,51 @@ export const Header: React.FC = () => {
   const { cart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'SHOP', href: '/shop' },
-    { name: 'ARCHIVE', href: '/archive' },
-    { name: 'EVENTS', href: '/events' },
-    { name: 'RETAILERS', href: '/retailers' },
-    { name: 'ABOUT US', href: '/about' },
+    { name: 'SHOP', href: '/shop', icon: '/svg/shop-icon.svg' },
+    { name: 'ARCHIVE', href: '/archive', icon: '/svg/archive-icon.svg' },
+    { name: 'EVENTS', href: '/events', icon: '/svg/events-icon.svg' },
+    { name: 'RETAILERS', href: '/retailers', icon: '/svg/retailers-icon.svg' },
+    { name: 'ABOUT US', href: '/about', icon: '/svg/about-icon.svg' },
   ];
+
+  const handleMenuToggle = () => {
+    // On mobile, use the mobile menu state
+    // On desktop, use the desktop menu state
+    if (window.innerWidth < 768) {
+      setIsMobileMenuOpen(!isMobileMenuOpen);
+    } else {
+      setIsDesktopMenuOpen(!isDesktopMenuOpen);
+    }
+  };
 
   return (
     <>
+
       <header className="header">
         <div className="header-container">
           <div className="header-content">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="mobile-menu-btn"
-              aria-label="Toggle mobile menu"
+              onClick={handleMenuToggle}
+              className="menu-btn"
+              aria-label="Toggle menu"
             >
               <div className="hamburger-icon">
                 <span
                   className={`hamburger-line ${
-                    isMobileMenuOpen ? 'hamburger-line-1-open' : ''
+                    (isMobileMenuOpen || isDesktopMenuOpen) ? 'hamburger-line-1-open' : ''
                   }`}
                 ></span>
                 <span
                   className={`hamburger-line ${
-                    isMobileMenuOpen ? 'hamburger-line-2-open' : ''
+                    (isMobileMenuOpen || isDesktopMenuOpen) ? 'hamburger-line-2-open' : ''
                   }`}
                 ></span>
                 <span
                   className={`hamburger-line ${
-                    isMobileMenuOpen ? 'hamburger-line-3-open' : ''
+                    (isMobileMenuOpen || isDesktopMenuOpen) ? 'hamburger-line-3-open' : ''
                   }`}
                 ></span>
               </div>
@@ -57,6 +69,44 @@ export const Header: React.FC = () => {
                   className="logo-svg"
                 />
               </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Dropdown Navigation Menu */}
+        <div
+          className={`desktop-menu ${
+            isDesktopMenuOpen ? 'desktop-menu-open' : 'desktop-menu-closed'
+          }`}
+        >
+          <div className="desktop-menu-inner">
+            <nav className="desktop-nav">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsDesktopMenuOpen(false)}
+                  className="desktop-nav-link"
+                >
+                  <img 
+                    src={item.icon} 
+                    alt={item.name}
+                    className="desktop-nav-icon"
+                  />
+                  <span className="desktop-nav-text">{item.name}</span>
+                </Link>
+              ))}
+            </nav>
+          </div>
+          
+          {/* Tablecloth Bottom Border for Desktop Menu */}
+          <div className="tablecloth-border">
+            <div className="scallop-container">
+              <div className="scallop-row">
+                {Array.from({ length: 50 }, (_, i) => (
+                  <div key={i} className="scallop-circle"></div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -83,8 +133,8 @@ export const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Tablecloth Bottom Border - Inside header */}
-        <div className={`tablecloth-border ${isMobileMenuOpen ? 'tablecloth-border-moved' : ''}`}>
+        {/* Tablecloth Bottom Border - Default position for mobile and closed desktop */}
+        <div className={`tablecloth-border ${isMobileMenuOpen ? 'tablecloth-border-moved' : ''} ${isDesktopMenuOpen ? 'tablecloth-border-hidden' : ''}`}>
           <div className="scallop-container">
             <div className="scallop-row">
               {Array.from({ length: 50 }, (_, i) => (

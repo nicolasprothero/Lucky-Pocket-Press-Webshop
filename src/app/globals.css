@@ -9,6 +9,7 @@
   --llp-white: #FFF7E8;
   --llp-black: #444444;
   --llp-background: #FFFCF7;
+  --llp-beige: #FFF7E8;
 }
 
 html {
@@ -58,6 +59,11 @@ body {
 }
 
 .hidden {
+  display: none;
+}
+
+/* Hide footer on homepage */
+.homepage footer {
   display: none;
 }
 

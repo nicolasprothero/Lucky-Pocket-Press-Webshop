@@ -88,3 +88,44 @@ export interface Collection {
     }>;
   };
 }
+
+export interface Event {
+  title: string;
+  location: string;
+  date: string;
+  'end date'?: string; // Optional for multi-day events
+  link: string;
+  'image link': string;
+}
+
+export interface Retailer {
+  name: string;
+  location: string;
+  region: string;
+  link: string;
+}
+
+export interface ArchiveBook {
+  title: string;
+  info: string;
+  year: string;
+  image: string;
+}
+
+export interface ArchiveEvent {
+  title: string;
+  info: string;
+  year: string;
+  image: string;
+}
+
+export interface ArchiveMerch {
+  title: string;
+  info: string;
+  year: string;
+  image: string;
+}
+
+export type ArchiveItem = ArchiveBook | ArchiveEvent | ArchiveMerch;
+
+export type ArchiveCategory = 'books' | 'events' | 'merch';

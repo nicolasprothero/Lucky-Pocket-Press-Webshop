@@ -18,10 +18,6 @@
   justify-content: center;
 }
 
-.cart-tab:hover {
-  background-color: #f3f4f6;
-}
-
 .cart-tab-icon {
   width: 1.5rem;
   height: 1.5rem;
@@ -31,7 +27,7 @@
 .cart-tab-badge {
   position: absolute;
   top: -0.5rem;
-  right: -0.5rem;
+  left: -0.5rem;
   background-color: var(--llp-red);
   color: var(--llp-white);
   border-radius: 50%;
@@ -42,6 +38,7 @@
   justify-content: center;
   font-size: 0.75rem;
   font-weight: bold;
+  box-shadow: 0 0 0 1px var(--llp-white);
 }
 
 /* Cart Drawer */
@@ -78,7 +75,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1.05rem;
+  border-bottom: 1px solid var(--llp-red);
 }
 
 .cart-title-section {
@@ -96,7 +94,7 @@
 .cart-count-badge {
   background-color: #F85246;
   color: white;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   padding: 0.25rem 0.5rem;
   border-radius: 9999px;
 }
@@ -106,8 +104,14 @@
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
   color: var(--llp-red);
+  transition: background-color 0.2s;
+}
+
+.cart-close-btn:hover {
+  background-color: rgba(248, 82, 70, 0.1);
 }
 
 .cart-content {
@@ -125,20 +129,15 @@
   text-align: center;
 }
 
-.cart-empty-icon {
-  font-size: 3.75rem;
-  margin-bottom: 1rem;
-}
-
 .cart-empty-title {
   font-size: 1.125rem;
   font-weight: 500;
-  color: #111827;
+  color: var(--llp-red);
   margin-bottom: 0.5rem;
 }
 
 .cart-empty-text {
-  color: #6b7280;
+  color: var(--llp-red);
 }
 
 /* Cart Items */
@@ -154,7 +153,7 @@
 }
 
 .cart-items-count {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   color: var(--llp-red);
 }
 
@@ -162,16 +161,19 @@
   color: #F85246;
   background: none;
   border: none;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   gap: 0.25rem;
   cursor: pointer;
-  transition: color 0.2s;
+
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.3s;
 }
 
 .cart-clear-btn:hover {
-  color: #dc2626;
+  background-color: rgba(248, 82, 70, 0.1);
 }
 
 .cart-items-list {
@@ -240,19 +242,20 @@
   color: var(--llp-red);
   background: none;
   border: none;
-  padding: 0.25rem;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: color 0.2s;
-  line-height: 1;
+  line-height: 0.5;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.3s;
 }
 
 .cart-item-remove:hover {
-  color: #dc2626;
+  background-color: rgba(248, 82, 70, 0.1);
 }
 
-/* Bottom div with quantity controls */
 .cart-item-bottom {
   display: flex;
   justify-content: space-between;
@@ -279,13 +282,13 @@
 .quantity-btn {
   width: 1.5rem;
   height: 1.5rem;
-  border-radius: 50%;
+  border-radius: 0.4rem;
   border: 1px solid var(--llp-red);
   background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s;
@@ -294,7 +297,7 @@
 
 .quantity-btn:hover:not(:disabled) {
   background-color: var(--llp-red);
-  color: white;
+  color: var(--llp-white);
 }
 
 .quantity-btn:disabled {
@@ -303,6 +306,7 @@
 }
 
 .cart-footer {
+  border-top: 1px solid var(--llp-red);
   padding: 1rem;
 }
 
@@ -314,12 +318,12 @@
 }
 
 .cart-total-label {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--llp-red);
 }
 
 .cart-total-amount {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--llp-red);
 }
 
@@ -338,11 +342,11 @@
 
 .checkout-btn {
   width: 100%;
-  background-color: #F85246;
+  background-color: var(--llp-red);
   color: var(--llp-white);
   padding: 0.75rem 1rem;
   border: none;
-  border-radius: 100rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -363,7 +367,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--llp-white);
   z-index: 40;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
@@ -371,6 +375,18 @@
 }
 
 .cart-backdrop-visible {
-  opacity: 1;
+  opacity: 0.7;
   pointer-events: auto;
+}
+
+/* Apply blur to main content when cart is open */
+body.cart-open > *:not(.cart-drawer):not(.cart-backdrop) {
+  filter: blur(4px);
+  transition: filter 0.3s ease-in-out;
+}
+
+/* Ensure cart drawer and backdrop are never blurred */
+.cart-drawer,
+.cart-backdrop {
+  filter: none !important;
 }

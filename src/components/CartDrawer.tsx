@@ -14,6 +14,20 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
   const { cart, removeItem, updateQuantity, clearCart, checkout, isLoading } = useCart();
   const [checkoutError, setCheckoutError] = React.useState<string | null>(null);
 
+  // Add/remove blur class to body when cart opens/closes
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('cart-open');
+    } else {
+      document.body.classList.remove('cart-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('cart-open');
+    };
+  }, [isOpen]);
+
   const handleCheckout = async () => {
     try {
       setCheckoutError(null);
@@ -54,7 +68,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
           {/* Header */}
           <div className="cart-header">
             <div className="cart-title-section">
-              <span className="cart-title">CART &gt; LUCKY POCKET PRESS</span>
+              <span className="cart-title">YOUR SHOPPING CART</span>
             </div>
             <button
               onClick={onClose}
@@ -68,9 +82,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
           <div className="cart-content">
             {cart.totalItems === 0 ? (
               <div className="cart-empty">
-                <div className="cart-empty-icon">🛒</div>
                 <h3 className="cart-empty-title">Your cart is empty</h3>
-                <p className="cart-empty-text">Add some products to get started!</p>
+                <p className="cart-empty-text">Check out our products in the shop!</p>
               </div>
             ) : (
               <div className="cart-items-container">

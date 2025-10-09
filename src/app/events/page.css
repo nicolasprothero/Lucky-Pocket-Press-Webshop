@@ -1,73 +1,39 @@
-/* Region filter buttons */
-.retailers-region-filters {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1.4rem;
-  flex-wrap: wrap;
-  max-width: 800px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.region-filter-btn {
-  background: transparent;
-  border: 1.5px solid var(--llp-red);
-  color: var(--llp-red);
-  padding: 0.5rem 1.25rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s, border 0.15s;
-}
-
-.region-filter-btn.active,
-.region-filter-btn:hover {
-  background: var(--llp-red);
-  color: var(--llp-white);
-  border-color: var(--llp-red);
-}
-/* Retailers Page Styles */
-.retailers-page {
+/* Events Page Styles */
+.events-page {
   min-height: 100vh;
   background-color: var(--llp-background);
 }
 
-.retailers-container {
+.events-container {
   max-width: 1200px;
   margin: 1.5rem auto;
 }
 
 /* Mobile styles */
 @media (max-width: 639px) {
-  .retailers-container {
+  .events-container {
     padding: 1.5rem 2rem;
   }
 }
 
 @media (min-width: 640px) {
-  .retailers-container {
+  .events-container {
     padding: 2rem 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .retailers-container {
+  .events-container {
     padding: 2rem;
   }
 }
 
-.retailers-header {
+.events-header {
   margin-bottom: 2rem;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
-.retailers-title {
+.events-title {
   font-size: 1.875rem;
   font-weight: 200;
   color: var(--llp-red);
@@ -79,17 +45,17 @@
   margin: 0 auto 2rem;
 }
 
-.retailers-title::after {
+.events-title::after {
   content: '';
   position: absolute;
   bottom: -1rem;
   left: 0;
   right: 0;
-  height: 1.6px;
+  height: 1.4px;
   background-color: var(--llp-red);
 }
 
-.retailers-description {
+.events-description {
   font-size: 0.9rem;
   color: var(--llp-red);
   line-height: 1.4;
@@ -98,28 +64,28 @@
   width: 100%;
   padding: 1rem 2rem;
   text-align: center;
-  margin: 0 auto 2rem;
+  margin: 0 auto 5rem;
 }
 
-.retailers-description::after {
+.events-description::after {
   content: '';
   position: absolute;
   bottom: -1rem;
   left: 0;
   right: 0;
-  height: 1.6px;
+  height: 1.4px;
   background-color: var(--llp-red);
 }
 
-.retailers-list {
+.events-list {
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
   align-items: center;
 }
 
-/* Retailer Card Animation Wrapper */
-.retailer-card-wrapper {
+/* Event Card Animation Wrapper */
+.event-card-wrapper {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s ease-out forwards;
@@ -135,19 +101,19 @@
 }
 
 /* Empty State */
-.no-retailers {
+.no-events {
   text-align: center;
   padding: 3rem 0;
 }
 
-.no-retailers p {
+.no-events p {
   color: #6b7280;
   font-size: 1.125rem;
   margin: 0.5rem 0;
 }
 
 /* Loading State */
-.retailers-loading {
+.events-loading {
   text-align: center;
   padding: 3rem 0;
   display: flex;
@@ -170,18 +136,18 @@
   100% { transform: rotate(360deg); }
 }
 
-.retailers-loading p {
+.events-loading p {
   color: #6b7280;
   font-size: 1.125rem;
 }
 
 /* Error State */
-.retailers-error {
+.events-error {
   text-align: center;
   padding: 3rem 0;
 }
 
-.retailers-error p {
+.events-error p {
   color: #6b7280;
   font-size: 1.125rem;
   margin: 0.5rem 0;
@@ -194,11 +160,11 @@
 
 /* Responsive adjustments */
 @media (max-width: 639px) {
-  .retailers-title {
+  .events-title {
     font-size: 1.5rem;
   }
   
-  .retailers-header {
+  .events-header {
     margin-bottom: 1.5rem;
   }
 }

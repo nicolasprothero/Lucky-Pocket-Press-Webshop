@@ -1,0 +1,50 @@
+/* Shop Footer */
+.shop-footer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem 1.5rem 2rem;
+  font-size: 0.9rem;
+  color: var(--llp-red);
+  background: none;
+  box-sizing: border-box;
+}
+
+.footer-jump-top-btn {
+  background: none;
+  border: none;
+  color: var(--llp-red);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s;
+}
+
+.footer-jump-top-btn:hover {
+  background-color: rgba(248, 82, 70, 0.1);
+}
+
+.footer-copyright {
+  font-size: 0.9rem;
+  color: var(--llp-red);
+}
+
+@media (max-width: 639px) {
+  .shop-footer {
+    justify-content: center;
+    padding: 1rem 1rem 1.25rem 1rem;
+  }
+  .footer-jump-top-btn {
+    display: none;
+  }
+  .footer-copyright {
+    text-align: center;
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}

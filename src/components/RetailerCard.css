@@ -1,0 +1,126 @@
+/* RetailerCard Component Styles */
+.retailer-card {
+  border-radius: 0.8rem;
+  overflow: hidden;
+  border: 0.1rem solid var(--llp-red);
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.retailer-card-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.retailer-card-title {
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: var(--llp-red);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.retailer-card-title.clickable {
+  cursor: pointer;
+}
+
+.retailer-card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.retailer-card-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.retailer-card-location {
+  color: var(--llp-red);
+  font-size: 0.9rem;
+  font-weight: 100;
+}
+
+.retailer-card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.retailer-card-region {
+  color: var(--llp-red);
+  font-size: 0.9rem;
+  font-weight: 100;
+}
+
+.retailer-card-button {
+  color: var(--llp-red);
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin: -0.5rem -0.5rem -0.5rem 0;
+  transition: background-color 0.3s;
+}
+
+.retailer-card-button:hover {
+  background-color: rgba(248, 82, 70, 0.1);
+}
+
+.retailer-card-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .retailer-card-content {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .retailer-card-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .retailer-card-right {
+    display: none;
+  }
+  
+  .retailer-card-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Loading and error states */
+.retailer-card.loading {
+  background: #f3f4f6;
+}
+
+.retailer-card.loading .retailer-card-content {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

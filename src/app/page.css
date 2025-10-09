@@ -1,13 +1,28 @@
 /* Home Page Styles */
 .home-page {
-  min-height: 100vh;
+  min-height: 91vh;
   background-color: #FFFCF7;
+  position: relative;
+  border: 2rem solid var(--llp-beige);
+  border-top: none;
+  border-radius: 0.5rem;
+}
+
+.home-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .home-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem 2rem;
 }
 
 @media (min-width: 640px) {
@@ -131,6 +146,10 @@
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
+  .home-page {
+    height: 92.5vh;
+
+  }
   .hero-title {
     font-size: 2rem;
   }
@@ -144,7 +163,7 @@
   }
   
   .home-container {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1.5rem;
   }
   
   .hero-section {

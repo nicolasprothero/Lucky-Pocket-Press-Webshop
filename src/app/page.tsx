@@ -12,6 +12,9 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Add homepage class to body
+    document.body.classList.add('homepage');
+    
     const loadFeaturedProducts = async () => {
       try {
         const result = await getProducts(4); // Get 4 featured products
@@ -24,11 +27,15 @@ export default function HomePage() {
     };
 
     loadFeaturedProducts();
+    
+    // Cleanup function to remove homepage class
+    return () => {
+      document.body.classList.remove('homepage');
+    };
   }, []);
 
   return (
     <div className="home-page">
-      HOME
     </div>
   );
 }

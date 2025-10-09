@@ -1,30 +1,67 @@
+
+'use client';
+
+import { useEffect, useState } from 'react';
 import { getProducts } from '@/lib/api';
-import { Product } from '@/types';
 import { ProductCard } from '@/components/ProductCard';
+import { Product } from '@/types';
 import './page.css';
 
-export default async function ShopPage() {
-  const { products } = await getProducts(20);
+export default function ShopPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const { products } = await getProducts(20);
+        setProducts(products);
+      } catch (error) {
+        console.error('Error loading products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="shop-page">
+        <div className="shop-container">
+          <div className="shop-header">
+            <h1 className="shop-title">SHOP</h1>
+          </div>
+          <div className="loading-state">
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="shop-page">
       <div className="shop-container">
-        {/* Header */}
         <div className="shop-header">
-          <h1 className="shop-title">Shop All Products</h1>
-          <p className="shop-subtitle">Discover our full collection</p>
+          <h1 className="shop-title">SHOP</h1>
         </div>
 
-        {/* Products Grid */}
         {products.length > 0 ? (
           <div className="products-grid">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {products.map((product, index) => (
+              <div
+                key={product.id}
+                className="product-card-wrapper"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         ) : (
           <div className="empty-state">
-            <p className="empty-state-text">No products available</p>
+            <p className="empty-state-text">No products are available at this time.<br/>Please check back later!</p>
           </div>
         )}
       </div>
