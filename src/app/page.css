@@ -1,4 +1,3 @@
-/* Homepage container */
 .home-page {
   min-height: 100vh;
   min-height: 90dvh;
@@ -17,7 +16,6 @@
   }
 }
 
-/* Logo container and styling */
 .home-logo-container {
   position: absolute;
   top: 50%;
@@ -183,7 +181,6 @@
   }
 }
 
-/* Large desktop adjustments */
 @media (min-width: 1024px) {
   .home-logo {
     height: 22rem;
