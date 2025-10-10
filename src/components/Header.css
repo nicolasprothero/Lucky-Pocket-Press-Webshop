@@ -156,13 +156,14 @@
 }
 
 .logo-svg {
-  height: 2rem;
+  display: block;
+  height: 2.4rem;
   width: auto;
 }
 
 @media (min-width: 768px) {
   .logo-svg {
-    height: 3rem;
+    height: 2.8rem;
   }
 }
 

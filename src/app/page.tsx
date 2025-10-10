@@ -10,7 +10,7 @@ export default function HomePage() {
     { name: 'ARCHIVE', href: '/archive', icon: '/svg/archive-icon.svg' },
     { name: 'EVENTS', href: '/events', icon: '/svg/events-icon.svg' },
     { name: 'RETAILERS', href: '/retailers', icon: '/svg/retailers-icon.svg' },
-    { name: 'ABOUT US', href: '/about', icon: '/svg/about-icon.svg' },
+    { name: 'ABOUT', href: '/about', icon: '/svg/about-icon.svg' },
   ];
 
   return (
@@ -20,12 +20,13 @@ export default function HomePage() {
           src="/image/logo.webp"
           alt="Lucky Pocket Press"
           className="home-logo"
-          width={300}
-          height={80}
+          width={2000}
+          height={2000}
+          priority
+          unoptimized
         />
       </div>
 
-      {/* Animated Navigation Icons */}
       <div className="floating-nav-container">
         {homeNavItems.map((item, index) => (
           <Link
