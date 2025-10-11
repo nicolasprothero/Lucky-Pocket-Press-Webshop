@@ -110,6 +110,7 @@ export interface ArchiveBook {
   info: string;
   year: string;
   image: string;
+  link?: string;
 }
 
 export interface ArchiveEvent {
@@ -117,6 +118,7 @@ export interface ArchiveEvent {
   info: string;
   year: string;
   image: string;
+  link?: string;
 }
 
 export interface ArchiveMerch {
@@ -124,6 +126,7 @@ export interface ArchiveMerch {
   info: string;
   year: string;
   image: string;
+  link?: string;
 }
 
 export type ArchiveItem = ArchiveBook | ArchiveEvent | ArchiveMerch;

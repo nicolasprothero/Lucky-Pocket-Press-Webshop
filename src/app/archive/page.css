@@ -171,6 +171,18 @@
   flex: 1;
 }
 
+.archive-info-link {
+  font-size: var(--font-size-regular);
+  color: var(--llp-black);
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  margin: 0;
+  flex: 1;
+  text-decoration: underline;
+  cursor: pointer;
+  display: block;
+}
+
 .last-page-content {
   display: flex;
   align-items: center;

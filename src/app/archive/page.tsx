@@ -20,17 +20,17 @@ export default function ArchivePage() {
 
   const { data: booksData, loading: booksLoading, error: booksError } = useSheetData<ArchiveBook>({
     sheetId: process.env.NEXT_PUBLIC_GOOGLE_SHEET_ID || '',
-    range: 'Archive-Books!A:D'
+    range: 'Archive-Books!A:E'
   });
 
   const { data: eventsData, loading: eventsLoading, error: eventsError } = useSheetData<ArchiveEvent>({
     sheetId: process.env.NEXT_PUBLIC_GOOGLE_SHEET_ID || '',
-    range: 'Archive-Events!A:D'
+    range: 'Archive-Events!A:E'
   });
 
   const { data: merchData, loading: merchLoading, error: merchError } = useSheetData<ArchiveMerch>({
     sheetId: process.env.NEXT_PUBLIC_GOOGLE_SHEET_ID || '',
-    range: 'Archive-Merch!A:D'
+    range: 'Archive-Merch!A:E'
   });
 
   const getCurrentData = (): ArchiveItem[] => {
@@ -156,7 +156,18 @@ export default function ArchivePage() {
                       <div className="page-info-section">
                         <h2 className="page-title">{item.title}</h2>
                         <div className="page-details">
-                          <p className="page-info">{item.info}</p>
+                          {item.link ? (
+                            <a 
+                              href={item.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="archive-info-link"
+                            >
+                              {item.info}
+                            </a>
+                          ) : (
+                            <p className="page-info">{item.info}</p>
+                          )}
                           <p className="page-year">{item.year}</p>
                         </div>
                       </div>

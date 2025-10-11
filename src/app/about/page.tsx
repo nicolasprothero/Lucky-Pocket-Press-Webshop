@@ -7,9 +7,10 @@ import { useSheetData } from '@/hooks/useSheetData';
 interface Update {
   date?: string;
   update?: string;
+  link?: string;
 }
 
-const UPDATES_RANGE = 'Updates!A:B';
+const UPDATES_RANGE = 'Updates!A:C';
 
 const formatDate = (dateString: string): string => {
   try {
@@ -68,7 +69,18 @@ export default function AboutPage() {
                         {update.date ? formatDate(update.date) : ''}
                       </div>
                       <div className="update-content">
-                        {update.update ? update.update : ''}
+                        {update.link ? (
+                          <a 
+                            href={update.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="update-link"
+                          >
+                            {update.update ? update.update : ''}
+                          </a>
+                        ) : (
+                          update.update ? update.update : ''
+                        )}
                       </div>
                     </div>
                   ))
