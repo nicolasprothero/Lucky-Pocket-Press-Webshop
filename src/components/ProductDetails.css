@@ -22,6 +22,9 @@
   background-color: #FFF7E8;
   overflow: hidden;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .details-main-image {
@@ -78,6 +81,9 @@
   width: 80px;
   height: 80px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .details-thumbnail-selected {
@@ -128,6 +134,14 @@
   font-size: var(--font-size-regular);
   font-family: var(--font-secondary);
   font-weight: 400;
+}
+
+.details-description p {
+  margin-bottom: 1rem;
+}
+
+.details-description p:last-child {
+  margin-bottom: 0;
 }
 
 .details-variants-section {

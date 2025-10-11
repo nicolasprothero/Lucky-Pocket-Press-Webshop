@@ -57,6 +57,15 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   const { author, cleanDescription } = extractAuthorFromDescription(product.description);
 
+  // Split description into paragraphs based on {{New Line}} markers
+  const paragraphs = cleanDescription.split('{{New Line}}').filter(p => p.trim());
+  
+  // Debug logs
+  console.log('Original description:', product.description);
+  console.log('Clean description:', cleanDescription);
+  console.log('Contains {{New Line}}:', cleanDescription.includes('{{New Line}}'));
+  console.log('Paragraphs after split:', paragraphs);
+
   const handleAddToCart = async () => {
     if (!selectedVariant) return;
 
@@ -134,7 +143,9 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
             <div className="details-author">by {author}</div>
           )}
           <div className="details-description">
-            <p>{cleanDescription}</p>
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph.trim()}</p>
+            ))}
           </div>
         </div>
 
