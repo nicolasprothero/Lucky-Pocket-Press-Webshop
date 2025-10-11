@@ -1,6 +1,6 @@
 
 .update-banner {
-  width: 100vw;
+  width: 100%;
   background: var(--llp-beige);
   color: var(--llp-red);
   font-family: var(--font-secondary);
