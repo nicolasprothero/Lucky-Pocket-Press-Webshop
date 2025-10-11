@@ -71,7 +71,6 @@
 .floating-icon-image {
   width: 4rem;
   height: 4rem;
-  filter: brightness(0) saturate(100%) invert(23%) sepia(89%) saturate(2372%) hue-rotate(346deg) brightness(98%) contrast(95%);
   margin-bottom: 0.5rem;
 }
 

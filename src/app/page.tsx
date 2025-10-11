@@ -6,11 +6,11 @@ import './page.css';
 
 export default function HomePage() {
   const homeNavItems = [
-    { name: 'SHOP', href: '/shop', icon: '/svg/shop-icon.svg' },
-    { name: 'ARCHIVE', href: '/archive', icon: '/svg/archive-icon.svg' },
-    { name: 'EVENTS', href: '/events', icon: '/svg/events-icon.svg' },
-    { name: 'RETAILERS', href: '/retailers', icon: '/svg/retailers-icon.svg' },
-    { name: 'ABOUT', href: '/about', icon: '/svg/about-icon.svg' },
+    { name: 'SHOP', href: '/shop', icon: '/image/shop.png' },
+    { name: 'ARCHIVE', href: '/archive', icon: '/image/archive.png' },
+    { name: 'EVENTS', href: '/events', icon: '/image/events.png' },
+    { name: 'RETAILERS', href: '/retailers', icon: '/image/retailers.png' },
+    { name: 'ABOUT', href: '/about', icon: '/image/more-2.png' },
   ];
 
   return (
@@ -39,8 +39,8 @@ export default function HomePage() {
               src={item.icon}
               alt={item.name}
               className="floating-icon-image"
-              width={40}
-              height={40}
+              width={80}
+              height={80}
             />
             <span className="floating-icon-text">{item.name}</span>
           </Link>

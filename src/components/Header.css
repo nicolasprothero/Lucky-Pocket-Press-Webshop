@@ -304,8 +304,8 @@
 }
 
 .desktop-nav-icon {
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   margin-bottom: 0.5rem;
   filter: brightness(0) invert(1);
   transition: filter 0.2s ease;
