@@ -61,7 +61,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     return { author: null, description };
   };
 
-  const { author, description } = parseDescription(product.description);
+  const { author } = parseDescription(product.description);
 
   const handleAddToCart = async () => {
     if (!firstVariant) return;

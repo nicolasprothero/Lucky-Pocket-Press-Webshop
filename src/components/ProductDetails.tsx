@@ -23,7 +23,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     return optionNames.every(optionName => {
       const selected = selectedOptions[optionName];
       return variantEdge.node.selectedOptions.some(
-        (opt: any) => opt.name === optionName && opt.value === selected
+        (opt: { name: string; value: string }) => opt.name === optionName && opt.value === selected
       );
     });
   })?.node;

@@ -1,5 +1,4 @@
 import { getProductByHandle, getProducts } from '@/lib/api';
-import { Product } from '@/types';
 import { ProductDetails } from '@/components/ProductDetails';
 import { ProductCard } from '@/components/ProductCard';
 import { notFound } from 'next/navigation';
