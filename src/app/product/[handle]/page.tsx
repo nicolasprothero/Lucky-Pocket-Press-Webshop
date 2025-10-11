@@ -19,19 +19,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  // Fetch related products (excluding current product)
-  const { products: allProducts } = await getProducts(10); // Get 10 products to have more options
+  const { products: allProducts } = await getProducts(10);
   const relatedProducts = allProducts
-    .filter(p => p.id !== product.id) // Exclude current product
-    .slice(0, 3); // Take first 3 different products
+    .filter(p => p.id !== product.id)
+    .slice(0, 3);
 
   return (
     <div className="product-page">
       <div className="product-container">
         <ProductDetails product={product} />
       </div>
-      
-      {/* Related Products Section */}
+
       <div className="related-products-section">
         <div className="related-products-container">
           <p className="related-products-title">Related Products</p>

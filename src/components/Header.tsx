@@ -20,8 +20,6 @@ export const Header: React.FC = () => {
   ];
 
   const handleMenuToggle = () => {
-    // On mobile, use the mobile menu state
-    // On desktop, use the desktop menu state
     if (window.innerWidth < 768) {
       setIsMobileMenuOpen(!isMobileMenuOpen);
     } else {
@@ -59,7 +57,6 @@ export const Header: React.FC = () => {
               </div>
             </button>
 
-            {/* Logo - Center on both mobile and desktop */}
             <div className="logo-container">
               <Link
                 href="/"
@@ -94,7 +91,6 @@ export const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Desktop Dropdown Navigation Menu */}
         <div
           className={`desktop-menu ${
             isDesktopMenuOpen ? 'desktop-menu-open' : 'desktop-menu-closed'
@@ -122,7 +118,6 @@ export const Header: React.FC = () => {
             </nav>
           </div>
           
-          {/* Tablecloth Bottom Border for Desktop Menu */}
           <div className="tablecloth-border">
             <div className="scallop-container">
               <div className="scallop-row">
@@ -134,7 +129,6 @@ export const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Full Screen Mobile Navigation Menu */}
         <div
           className={`mobile-menu ${
             isMobileMenuOpen ? 'mobile-menu-open' : 'mobile-menu-closed'
@@ -156,7 +150,6 @@ export const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Tablecloth Bottom Border - Default position for mobile and closed desktop */}
         <div className={`tablecloth-border ${isMobileMenuOpen ? 'tablecloth-border-moved' : ''} ${isDesktopMenuOpen ? 'tablecloth-border-hidden' : ''}`}>
           <div className="scallop-container">
             <div className="scallop-row">
@@ -168,7 +161,6 @@ export const Header: React.FC = () => {
         </div>
       </header>
 
-      {/* Cart Drawer */}
       <CartDrawer 
         isOpen={isCartOpen} 
         onClose={() => setIsCartOpen(false)}

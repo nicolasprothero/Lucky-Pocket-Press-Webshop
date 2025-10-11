@@ -16,24 +16,11 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
   const [checkoutError, setCheckoutError] = React.useState<string | null>(null);
   const [hasMounted, setHasMounted] = React.useState(false);
 
-  // Track if component has mounted to prevent hydration mismatches
   React.useEffect(() => {
     setHasMounted(true);
   }, []);
 
-  // Add/remove blur class to body when cart opens/closes
-  React.useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('cart-open');
-    } else {
-      document.body.classList.remove('cart-open');
-    }
 
-    // Cleanup on unmount
-    return () => {
-      document.body.classList.remove('cart-open');
-    };
-  }, [isOpen]);
 
   const handleCheckout = async () => {
     try {
@@ -46,23 +33,20 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className={`cart-backdrop ${isOpen ? 'cart-backdrop-visible' : ''}`}
         onClick={onClose}
       />
 
-      {/* Cart Drawer */}
       <div
         className={`cart-drawer ${isOpen ? 'cart-drawer-open' : 'cart-drawer-closed'}`}
       >
-        {/* Cart Tab Button - now inside the drawer */}
         <button
           onClick={() => !isOpen && onOpen()}
           className="cart-tab"
           aria-label="Open cart"
         >
-    <Image src="/svg/cart.svg" alt="Cart" className="cart-tab-icon" width={32} height={32} />
+          <Image src="/svg/cart.svg" alt="Cart" className="cart-tab-icon" width={32} height={32} />
           {hasMounted && cart.totalItems > 0 && (
             <span className="cart-tab-badge">
               {cart.totalItems}
@@ -70,7 +54,6 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
           )}
         </button>
         <div className="cart-drawer-content">
-          {/* Header */}
           <div className="cart-header">
             <div className="cart-title-section">
               <span className="cart-title">YOUR SHOPPING CART</span>
@@ -83,7 +66,6 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
             </button>
           </div>
 
-          {/* Cart Content */}
           <div className="cart-content">
             {cart.totalItems === 0 ? (
               <div className="cart-empty">
@@ -107,7 +89,6 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
                 <div className="cart-items-list">
                   {cart.items.map((item) => (
                     <div key={item.id} className="cart-item">
-                      {/* Top div with image and product details */}
                       <div className="cart-item-top">
                         <div className="cart-item-image">
                           {item.image && (
@@ -127,8 +108,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
                           </button>
                         </div>
                       </div>
-                      
-                      {/* Bottom div with quantity controls */}
+
                       <div className="cart-item-bottom">
                         <div className="cart-item-qty-section">
                           <span className="qty-label">QTY: {item.quantity}</span>
@@ -156,7 +136,6 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, onOpen 
             )}
           </div>
 
-          {/* Footer */}
           {cart.totalItems > 0 && (
             <div className="cart-footer">
               <div className="cart-total">

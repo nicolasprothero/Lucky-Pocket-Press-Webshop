@@ -34,17 +34,15 @@ export default function AboutPage() {
     range: UPDATES_RANGE,
   });
 
-  // Sort updates by date, newest first
   const sortedUpdates = updates?.slice().sort((a, b) => {
     if (!a.date || !b.date) return 0;
     
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
     
-    // If dates are invalid, keep original order
     if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) return 0;
     
-    return dateB.getTime() - dateA.getTime(); // Newest first
+    return dateB.getTime() - dateA.getTime();
   }) || [];
 
   return (

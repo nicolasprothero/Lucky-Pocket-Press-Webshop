@@ -1,4 +1,3 @@
-/* ProductDetails Component Styles */
 .details-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -11,7 +10,6 @@
   }
 }
 
-/* Images Section */
 .details-images {
   display: flex;
   flex-direction: column;
@@ -38,13 +36,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9ca3af;
-  font-size: 1rem;
+  color: var(--llp-gray);
+  background-color: var(--llp-gray-bg);
+  font-size: var(--font-size-regular);
 }
 
-/* Thumbnail Images */
 .details-thumbnails-container {
-  max-width: 500px; /* Match main image width */
+  max-width: 500px;
 }
 
 .details-thumbnails-scroll {
@@ -96,21 +94,15 @@
   object-fit: cover;
 }
 
-/* Product Info Section */
 .details-info {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  justify-content: center; /* Center content vertically */
-}
-
-.details-header {
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 1.5rem;
+  justify-content: center;
 }
 
 .details-title {
-  font-size: 3rem;
+  font-size: var(--font-size-megatitle);
   font-weight: bold;
   color: var(--llp-black);
   margin-bottom: 1rem;
@@ -118,96 +110,78 @@
 }
 
 .details-price {
-  font-size: 1.5rem;
+  font-size: var(--font-size-subtitle);
   font-weight: 600;
-  color: #F85246;
+  color: var(--llp-red);
   margin-bottom: 1rem;
 }
 
 .details-author {
-  font-size: 1rem;
-  font-style: italic;
-  color: #6b7280;
+  font-size: var(--font-size-regular);
+  color: var(--llp-black);
   margin-bottom: 1rem;
 }
 
 .details-description {
-  color: #6b7280;
+  color: var(--llp-black);
   line-height: 1.6;
-  font-size: 1rem;
+  font-size: var(--font-size-regular);
+  font-family: var(--font-secondary);
+  font-weight: 400;
 }
 
-/* Variants Section */
 .details-variants-section {
-  border-bottom: 1px solid #e5e7eb;
   padding-bottom: 1.5rem;
-}
-
-.details-section-title {
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: #444444;
-  margin-bottom: 0.75rem;
 }
 
 .details-variants-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
 }
 
+.details-option-group {
+  margin-bottom: 1.5rem;
+}
+
+.details-option-label {
+  font-size: var(--font-size-regular);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--llp-black);
+}
+
+.details-option-values {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .details-variant-btn {
-  padding: 0.75rem;
+  padding: 0.75rem 1.2rem;
   border-radius: 0.5rem;
-  border: 0.1rem solid var(--llp-red);
-  background: none;
+  background-color: rgba(248, 82, 70, 0.1);
+  color: var(--llp-red);
+  border-color: transparent;
+  font-size: var(--font-size-regular);
+  font-family: inherit;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s, color 0.2s, border 0.2s;
   text-align: left;
 }
 
 .details-variant-selected {
-  border-color: #F85246;
-  background-color: #F85246;
+  border-color: transparent;
+  background-color: var(--llp-red);
+  color: var(--llp-white);
 }
 
 .details-variant-unselected {
-  border-color: #e5e7eb;
-  background-color: transparent;
+  background-color: rgba(248, 82, 70, 0.1);
+  color: var(--llp-red);
+  border-color: transparent;
 }
 
-.details-variant-disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.details-variant-title {
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-}
-
-.details-variant-title-selected {
-  color: white;
-}
-
-.details-variant-title-unselected {
-  color: #444444;
-}
-
-.details-variant-price {
-  font-size: 0.75rem;
-}
-
-.details-variant-price-selected {
-  color: white;
-}
-
-.details-variant-price-unselected {
-  color: #6b7280;
-}
-
-/* Quantity Section */
 .quantity-section {
   border-bottom: 1px solid #e5e7eb;
   padding-bottom: 1.5rem;
@@ -219,15 +193,6 @@
   gap: 0.75rem;
 }
 
-.quantity-display {
-  font-size: 1.25rem;
-  font-weight: 500;
-  width: 3rem;
-  text-align: center;
-  color: #444444;
-}
-
-/* Add to Cart Button */
 .details-add-to-cart-btn {
   width: 100%;
   font-weight: 200;
@@ -236,32 +201,26 @@
   border: 0.1rem solid var(--llp-red);
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 1rem;
+  font-size: var(--font-size-regular);
   color: var(--llp-white);
 }
 
 .details-add-to-cart-available {
-  background-color: #F85246;
-  color: white;
-  border-color: #F85246;
+  background-color: var(--llp-red);
+  color: var(--llp-white);
+  border-color: var(--llp-red);
 }
 
 .details-add-to-cart-available:hover {
-  background-color: #e74c3c;
-  border-color: #e74c3c;
+  background-color: var(--llp-red-dark);
+  border-color: var(--llp-red-dark);
 }
 
 .details-add-to-cart-disabled {
-  background-color: #00000013;
+  background-color: var(--llp-gray-bg);
   border: none;
-  color: #00000044;
+  color: var(--llp-gray);
   cursor: not-allowed;
-}
-
-/* Product Details Section */
-.details-section {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 1.5rem;
 }
 
 .details-list {
@@ -270,39 +229,6 @@
   gap: 0.5rem;
 }
 
-.detail-item {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-.detail-label {
-  font-weight: 500;
-}
-
-.detail-value {
-  color: #444444;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .details-container {
-    gap: 2rem;
-  }
-  
-  .details-title {
-    font-size: 1.5rem;
-  }
-  
-  .details-price {
-    font-size: 1.25rem;
-  }
-  
-  .details-add-to-cart-btn {
-    font-size: 1rem;
-  }
-}
 
 @media (max-width: 640px) {
   .details-container {
@@ -312,13 +238,13 @@
   
   .details-main-image-container {
     width: 100%;
-    height: 300px; /* Fixed height for mobile */
-    max-width: 300px; /* Max width for mobile */
+    height: 300px;
+    max-width: 300px;
     margin: 0 auto;
   }
   
   .details-thumbnails-container {
-    max-width: 300px; /* Use full container width on mobile */
+    max-width: 300px;
     width: 100%;
     margin: 0 auto;
   }
@@ -338,10 +264,10 @@
   }
   
   .details-title {
-    font-size: 3rem;
+    font-size: var(--font-size-megatitle);
   }
   
   .details-section-title {
-    font-size: 1rem;
+    font-size: var(--font-size-regular);
   }
 }

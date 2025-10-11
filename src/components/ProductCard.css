@@ -1,26 +1,23 @@
-/* ProductCard Component Styles */
 .product-card {
   border-radius: 0.8rem;
   border: 0.1rem solid var(--llp-red);
   overflow: hidden;
-  transition: box-shadow 0.3s ease;
   width: 280px;
   min-width: 360px;
   max-width: 280px;
-  height: 500px; /* Fixed height on desktop */
+  height: 500px;
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
 
-/* Image Container */
 .card-image-container {
   aspect-ratio: 1;
   border-radius: 0.5rem;
   position: relative;
   overflow: hidden;
-  margin-bottom: 1rem; /* Fixed margin, no auto centering */
-  flex-shrink: 0; /* Prevent image from shrinking */
+  margin-bottom: 1rem;
+  flex-shrink: 0;
 }
 
 .card-details {
@@ -47,20 +44,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9ca3af;
-  font-size: 1rem;
+  background-color: var(--llp-gray-bg);
+  color: var(--llp-gray);
+  font-size: var(--font-size-regular);
 }
 
-/* Title Container */
 .card-title-container {
   overflow: hidden;
   width: 100%;
   position: relative;
 }
 
-/* Title */
 .card-title {
-  font-size: 1.8rem;
+  font-size: var(--font-size-title);
   font-weight: 200;
   color: var(--llp-red);
   line-height: 1.3;
@@ -68,7 +64,7 @@
   white-space: nowrap;
   margin: 0;
   display: inline-block;
-  --scroll-distance: 0px; /* Default value, set dynamically */
+  --scroll-distance: 0px;
 }
 
 .card-title-marquee {
@@ -80,18 +76,23 @@
   0% {
     transform: translateX(0);
   }
+
   15% {
     transform: translateX(0);
   }
+
   40% {
     transform: translateX(var(--scroll-distance));
   }
+
   60% {
     transform: translateX(var(--scroll-distance));
   }
+
   85% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -103,11 +104,10 @@
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
-  flex: 1; /* Take up remaining space */
-  align-content: flex-start; /* Align content to top, extra space goes to bottom */
+  flex: 1;
+  align-content: flex-start;
 }
 
-/* Text Content Wrapper */
 .card-text-content {
   flex: 1;
   display: flex;
@@ -115,30 +115,25 @@
   gap: 0.25rem;
 }
 
-/* Author */
 .card-author {
   color: var(--llp-red);
-  font-size: 1rem;
+  font-size: var(--font-size-regular);
   margin: 0;
-  letter-spacing: 0.5px;
 }
 
 .card-price {
   color: var(--llp-red);
-  font-size: 1rem;
+  font-size: var(--font-size-subtitle);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-/* Price when no author - positioned under title on left */
 .card-price-no-author {
   color: var(--llp-red);
-  font-size: 1rem;
+  font-size: var(--font-size-subtitle);
   margin: 0;
-  letter-spacing: 0.5px;
 }
 
-/* Button Row */
 .card-button-row {
   display: flex;
   gap: 0.5rem;
@@ -155,15 +150,15 @@
   text-decoration: none;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  font-size: var(--font-size-regular);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .card-view-btn:hover {
-  background-color: #F85246;
+  background-color: var(--llp-red);
   color: var(--llp-white);
 }
 
@@ -174,14 +169,14 @@
   border-radius: 0.5rem;
   border: 0.1rem solid var(--llp-red);
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  font-size: var(--font-size-regular);
 }
 
 .card-add-btn-available {
-  background-color: #F85246;
+  background-color: var(--llp-red);
   color: var(--llp-white);
-  border-color: #F85246;
+  border-color: var(--llp-red);
 }
 
 .card-add-btn-available:hover {
@@ -190,14 +185,14 @@
 }
 
 .card-add-btn-disabled {
-  background-color: #00000013;
+  background-color: var(--llp-gray-bg);
+  color: var(--llp-gray);
   border: none;
-  color: #00000044;
   cursor: not-allowed;
 }
 
 .card-add-btn-adding {
-  color: #9ca3af;
+  color: var(--llp-gray);
   cursor: not-allowed;
 }
 
@@ -220,7 +215,7 @@
     gap: 0.5rem;
     margin-top: 1rem;
   }
-  
+
   .card-view-btn,
   .card-add-btn,
   .card-add-btn-available,
@@ -255,6 +250,7 @@
   0% {
     left: -100%;
   }
+
   100% {
     left: 100%;
   }

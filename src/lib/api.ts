@@ -332,7 +332,6 @@ export function formatPrice(amount: string, currencyCode: string): string {
   }).format(price);
 }
 
-// Checkout functionality
 export async function createCheckout(lineItems: Array<{ variantId: string; quantity: number }>): Promise<string> {
   const query = `
     mutation cartCreate($input: CartInput!) {

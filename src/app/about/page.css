@@ -14,7 +14,7 @@
 }
 
 .about-main-title {
-  font-size: 1.875rem;
+  font-size: var(--font-size-title);
   font-weight: 200;
   color: var(--llp-red);
   position: relative;
@@ -36,8 +36,10 @@
 }
 
 .about-main-description {
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   color: var(--llp-red);
+  font-family: var(--font-secondary);
+  font-weight: 400;
   line-height: 1.4;
   position: relative;
   max-width: 500px;
@@ -74,7 +76,7 @@
 }
 
 .about-title {
-  font-size: 1rem;
+  font-size: var(--font-size-subtitle);
   font-weight: 200;
   margin-bottom: 0.6rem;
   text-transform: uppercase;
@@ -82,7 +84,7 @@
 }
 
 .about-content {
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   color: var(--llp-red);
 }
 
@@ -101,15 +103,18 @@
 }
 
 .update-date {
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
+  font-family: var(--font-secondary);
   font-weight: 400;
   color: var(--llp-red);
   flex-shrink: 0;
 }
 
 .update-content {
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   color: var(--llp-red);
+  font-family: var(--font-secondary);
+  font-weight: 400;
   line-height: 1.4;
   flex: 1;
 }
@@ -121,7 +126,7 @@
 }
 
 .about-updates-item {
-  font-size: 0.98rem;
+  font-size: var(--font-size-regular);
   color: var(--llp-red);
   margin-bottom: 0.5rem;
 }
@@ -151,11 +156,10 @@
   }
   
   .about-title {
-    font-size: 1.3rem;
+    font-size: var(--font-size-subtitle);
   }
 }
 
-/* Newsletter specific styles */
 .newsletter-content {
   display: flex;
   align-items: flex-start;
@@ -173,6 +177,8 @@
 .newsletter-text {
   flex: 1;
   line-height: 1.5;
+  font-family: var(--font-secondary);
+  font-weight: 400;
 }
 
 .newsletter-image-link {

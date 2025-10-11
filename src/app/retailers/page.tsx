@@ -12,7 +12,6 @@ export default function RetailersPage() {
     range: 'Retailers!A:Z'
   });
 
-  // Debug logging
   console.log('Retailers debug:', {
     loading,
     error,
@@ -20,10 +19,8 @@ export default function RetailersPage() {
     retailers: retailers?.slice(0, 2)
   });
 
-  // Region filter state
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
 
-  // Get unique regions from retailers
   const regions = useMemo(() => {
     if (!retailers) return [];
     const regionSet = new Set<string>();
@@ -33,7 +30,6 @@ export default function RetailersPage() {
     return Array.from(regionSet).sort();
   }, [retailers]);
 
-  // Filtered retailers by region
   const filteredRetailers = useMemo(() => {
     if (!retailers) return [];
     if (selectedRegion === 'All') return retailers;
@@ -50,7 +46,6 @@ export default function RetailersPage() {
           </div>
         </div>
 
-        {/* Region filter buttons */}
         {!loading && !error && regions.length > 0 && (
           <div className="retailers-region-filters">
             <button

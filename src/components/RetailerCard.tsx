@@ -7,7 +7,7 @@ interface RetailerCardProps {
 }
 
 export const RetailerCard: React.FC<RetailerCardProps> = ({ retailer }) => {
-  const handleLearnMore = () => {
+  const handleStoreClick = () => {
     if (retailer.link) {
       window.open(retailer.link, '_blank', 'noopener,noreferrer');
     }
@@ -16,22 +16,34 @@ export const RetailerCard: React.FC<RetailerCardProps> = ({ retailer }) => {
   return (
     <div className="retailer-card">
       <div className="retailer-card-content">
-        <h3 
-          className={`retailer-card-title`}        >
-          {retailer.name}
-        </h3>
-        
+        <div className="retailer-card-header">
+          <h3 
+            className={`retailer-card-title ${retailer.link ? 'clickable' : ''}`}
+            onClick={retailer.link ? handleStoreClick : undefined}
+          >
+            {retailer.name}
+          </h3>
+          <div className="retailer-card-region">
+            {retailer.region}
+          </div>
+        </div>
+
         <div className="retailer-card-info">
           <div className="retailer-card-left">
             <div className="retailer-card-location">
               {retailer.location}
             </div>
           </div>
-          
+
           <div className="retailer-card-right">
-            <div className="retailer-card-region">
-              {retailer.region}
-            </div>
+            {retailer.link && (
+              <span 
+                onClick={handleStoreClick}
+                className="retailer-card-button"
+              >
+                View More
+              </span>
+            )}
           </div>
         </div>
       </div>

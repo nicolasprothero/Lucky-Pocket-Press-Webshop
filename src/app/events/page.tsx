@@ -18,7 +18,7 @@ export default function EventsPage() {
         <div className="events-header">
           <h1 className="events-title">EVENTS</h1>
           <div className="events-description">
-            Upcoming events that we plan to be at.<br />Whether that is tabling and selling or helping out with facilitation.<br />Come see us here!
+            Upcoming events that we plan to be at.<br />Whether that is tabling and selling or helping out with facilitation.<br /><br />Come see us here!
           </div>
         </div>
 

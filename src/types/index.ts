@@ -93,7 +93,7 @@ export interface Event {
   title: string;
   location: string;
   date: string;
-  'end date'?: string; // Optional for multi-day events
+  'end date'?: string;
   link: string;
   'image link': string;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Product } from '@/types';
 import { formatPrice } from '@/lib/api';
@@ -14,13 +14,37 @@ interface ProductDetailsProps {
 export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const { addItem } = useCart();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [selectedOptions, setSelectedOptions] = useState<{ [optionName: string]: string }>({});
   const [isAdding, setIsAdding] = useState(false);
 
-  const selectedVariant = product.variants.edges[selectedVariantIndex]?.node;
+  const optionNames = product.options?.map(opt => opt.name) || [];
+
+  const selectedVariant = product.variants.edges.find(variantEdge => {
+    return optionNames.every(optionName => {
+      const selected = selectedOptions[optionName];
+      return variantEdge.node.selectedOptions.some(
+        (opt: any) => opt.name === optionName && opt.value === selected
+      );
+    });
+  })?.node;
+  useEffect(() => {
+    if (product.options) {
+      const defaults: { [optionName: string]: string } = {};
+      product.options.forEach(option => {
+        defaults[option.name] = option.values[0];
+      });
+      setSelectedOptions(defaults);
+    }
+  }, [product.options]);
+
+  const handleOptionChange = (optionName: string, value: string) => {
+    setSelectedOptions(prev => ({
+      ...prev,
+      [optionName]: value,
+    }));
+  };
   const images = product.images.edges;
 
-  // Extract author from description if it starts with {{}}
   const extractAuthorFromDescription = (description: string) => {
     const authorMatch = description.match(/^\{\{(.+?)\}\}/);
     if (authorMatch) {
@@ -35,9 +59,9 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   const handleAddToCart = async () => {
     if (!selectedVariant) return;
-    
+
     setIsAdding(true);
-    
+
     try {
       addItem({
         id: `${product.id}-${selectedVariant.id}`,
@@ -59,9 +83,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   return (
     <div className="details-container">
-      {/* Images */}
       <div className="details-images">
-        {/* Main Image */}
         <div className="details-main-image-container">
           {images[selectedImageIndex] ? (
             <Image
@@ -78,7 +100,6 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           )}
         </div>
 
-        {/* Thumbnail Images */}
         {images.length > 1 && (
           <div className="details-thumbnails-container">
             <div className="details-thumbnails-scroll">
@@ -86,9 +107,8 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
                 <button
                   key={image.node.id}
                   onClick={() => setSelectedImageIndex(index)}
-                  className={`details-thumbnail-btn ${
-                    selectedImageIndex === index ? 'details-thumbnail-selected' : 'details-thumbnail-unselected'
-                  }`}
+                  className={`details-thumbnail-btn ${selectedImageIndex === index ? 'details-thumbnail-selected' : 'details-thumbnail-unselected'
+                    }`}
                 >
                   <Image
                     src={image.node.url}
@@ -104,7 +124,6 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         )}
       </div>
 
-      {/* Product Info */}
       <div className="details-info">
         <div className="details-header">
           <h1 className="details-title">{product.title}</h1>
@@ -119,51 +138,44 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           </div>
         </div>
 
-        {/* Variants */}
-        {product.variants.edges.length > 1 && (
+        {product.options && product.options.length > 0 && product.variants.edges.length > 1 && (
           <div className="details-variants-section">
-            <h3 className="details-section-title">Options</h3>
-            <div className="details-variants-grid">
-              {product.variants.edges.map((variant, index) => (
-                <button
-                  key={variant.node.id}
-                  onClick={() => setSelectedVariantIndex(index)}
-                  disabled={!variant.node.availableForSale}
-                  className={`details-variant-btn ${
-                    selectedVariantIndex === index ? 'details-variant-selected' : 'details-variant-unselected'
-                  } ${!variant.node.availableForSale ? 'details-variant-disabled' : ''}`}
-                >
-                  <div className={`details-variant-title ${
-                    selectedVariantIndex === index ? 'details-variant-title-selected' : 'details-variant-title-unselected'
-                  }`}>
-                    {variant.node.title}
-                  </div>
-                  <div className={`details-variant-price ${
-                    selectedVariantIndex === index ? 'details-variant-price-selected' : 'details-variant-price-unselected'
-                  }`}>
-                    {formatPrice(variant.node.price.amount, variant.node.price.currencyCode)}
-                  </div>
-                </button>
-              ))}
-            </div>
+            {product.options.map(option => (
+              <div key={option.name} className="details-option-group">
+                <div className="details-option-label">{option.name}</div>
+                <div className="details-option-values">
+                  {option.values.map(value => (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => handleOptionChange(option.name, value)}
+                      className={`details-variant-btn ${selectedOptions[option.name] === value
+                          ? 'details-variant-selected'
+                          : 'details-variant-unselected'
+                        }`}
+                    >
+                      {value}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
-        {/* Add to Cart */}
         <button
           onClick={handleAddToCart}
           disabled={isAdding || !selectedVariant || !selectedVariant.availableForSale}
-          className={`details-add-to-cart-btn ${
-            isAdding || !selectedVariant || !selectedVariant.availableForSale 
-              ? 'details-add-to-cart-disabled' 
+          className={`details-add-to-cart-btn ${isAdding || !selectedVariant || !selectedVariant.availableForSale
+              ? 'details-add-to-cart-disabled'
               : 'details-add-to-cart-available'
-          }`}
+            }`}
         >
           {isAdding
             ? 'Adding...'
             : selectedVariant?.availableForSale
-            ? 'Add to Cart'
-            : 'Out of Stock'
+              ? 'Add to Cart'
+              : 'Out of Stock'
           }
         </button>
       </div>

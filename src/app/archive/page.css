@@ -1,4 +1,3 @@
-/* Archive Page Styles */
 .archive-page {
     min-height: 90vh;
     background-color: var(--llp-background);
@@ -16,7 +15,6 @@
   padding: 1rem;
 }
 
-/* Category Navigation */
 .archive-nav {
   display: flex;
   justify-content: center;
@@ -30,7 +28,7 @@
   color: var(--llp-red);
   border-color: transparent;
   border-radius: 0.5rem;
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   font-weight: 200;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -49,7 +47,6 @@
   color: var(--llp-white);
 }
 
-/* Book Container */
 .book-container {
   flex: 1;
   display: flex;
@@ -89,7 +86,6 @@
   }
 }
 
-/* Each page spread (contains image and info) */
 .page-spread {
   flex: 1;
   display: flex;
@@ -100,7 +96,6 @@
   background-color: var(--llp-background);
 }
 
-/* Desktop book spread styling - left page */
 @media (min-width: 768px) {
   .page-spread:first-child {
     border-top-right-radius: 0;
@@ -129,8 +124,8 @@
 }
 
 .no-image {
-  color: #9ca3af;
-  font-size: 1.125rem;
+  color: var(--llp-gray);
+  font-size: var(--font-size-regular);
 }
 
 .page-info-section {
@@ -141,7 +136,7 @@
 }
 
 .page-title {
-  font-size: 1.2rem;
+  font-size: var(--font-size-subtitle);
   font-weight: 200;
   color: var(--llp-black);
   text-transform: uppercase;
@@ -154,10 +149,12 @@
   justify-content: space-between;
   gap: 1rem;
   align-items: flex-start;
+  font-family: var(--font-secondary);
+  font-weight: 400;
 }
 
 .page-year {
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   color: var(--llp-black);
   font-weight: 200;
   margin: 0;
@@ -166,9 +163,10 @@
 }
 
 .page-info {
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   color: var(--llp-black);
-  font-weight: 200;
+  font-family: var(--font-secondary);
+  font-weight: 400;
   margin: 0;
   flex: 1;
 }
@@ -182,7 +180,7 @@
 }
 
 .last-page-message {
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   font-weight: 200;
   color: rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -205,7 +203,7 @@
   background-color: rgba(248, 82, 70, 0.1);
   color: var(--llp-red);
   border-color: transparent;
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s;
@@ -226,25 +224,23 @@
 }
 
 .page-indicator {
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   color: var(--llp-red);
   font-weight: 200;
   min-width: 100px;
   text-align: center;
 }
 
-/* Loading and Empty States */
 .book-loading,
 .book-empty {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 500px;
-  color: #6b7280;
-  font-size: 1.125rem;
+  color: var(--llp-gray);
+  font-size: var(--font-size-regular);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .archive-container {
     margin-top: 1rem;
@@ -258,7 +254,7 @@
   
   .category-btn {
     padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+    font-size: var(--font-size-regular);
   }
   
   .book-page {
@@ -273,7 +269,7 @@
   }
   
   .page-spread:not(:last-child) {
-    display: none; /* Hide second item on mobile */
+    display: none;
   }
   
   .page-image {
@@ -285,7 +281,7 @@
   }
   
   .page-title {
-    font-size: 1.25rem;
+    font-size: var(--font-size-subtitle);
   }
   
   .book-controls {

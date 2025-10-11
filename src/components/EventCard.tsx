@@ -8,24 +8,30 @@ interface EventCardProps {
 
 export const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const formatDate = (dateString: string) => {
+    if (!dateString || dateString.trim() === '') return null;
+    
     try {
       const date = new Date(dateString);
+      if (isNaN(date.getTime())) return null;
+      
       return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
       });
     } catch {
-      return dateString; // Return original if parsing fails
+      return null;
     }
   };
 
   const formatDateRange = () => {
     const startDate = formatDate(event.date);
+    if (!startDate) return null;
     
     if (event['end date']) {
       const endDate = formatDate(event['end date']);
-      // If same month and year, show abbreviated format
+      if (!endDate) return startDate;
+      
       const start = new Date(event.date);
       const end = new Date(event['end date']);
       
@@ -60,9 +66,11 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
             <div className="event-card-location">
               {event.location}
             </div>
-            <div className="event-card-date">
-              {formatDateRange()}
-            </div>
+            {formatDateRange() && (
+              <div className="event-card-date">
+                {formatDateRange()}
+              </div>
+            )}
           </div>
           
           <div className="event-card-right">

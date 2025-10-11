@@ -22,30 +22,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const minPrice = product.priceRange.minVariantPrice;
   const firstVariant = product.variants.edges[0]?.node;
 
-  // Check if title overflows and set up marquee
   useEffect(() => {
     const checkOverflow = () => {
       const titleElement = titleRef.current;
-      const containerElement = titleElement?.parentElement; // Get the container
+      const containerElement = titleElement?.parentElement;
       if (!titleElement || !containerElement) return;
 
-      // Reset any existing animation
       setShouldMarquee(false);
       titleElement.style.animationDuration = '';
 
-      // Check if text is overflowing the container
       const isOverflowing = titleElement.scrollWidth > containerElement.clientWidth;
       
       if (isOverflowing) {
-        // Calculate animation duration based on overflow amount
         const overflowAmount = titleElement.scrollWidth - containerElement.clientWidth;
-        const duration = Math.max(4, Math.min(8, overflowAmount / 20)); // Between 4-8 seconds
+        const duration = Math.max(4, Math.min(8, overflowAmount / 20));
         
-        // Set custom CSS property for the scroll distance (just the overflow amount, no extra padding)
         titleElement.style.setProperty('--scroll-distance', `-${overflowAmount}px`);
         titleElement.style.animationDuration = `${duration}s`;
         
-        // Wait 1 second before starting marquee
         setTimeout(() => {
           setShouldMarquee(true);
         }, 1000);
@@ -55,7 +49,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     checkOverflow();
   }, [product.title]);
 
-  // Parse description to extract author and content
   const parseDescription = (description: string) => {
     const authorMatch = description.match(/^\{\{\s*([^}]+)\s*\}\}\s*/);
     
@@ -96,7 +89,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="product-card">
-      {/* Big Image */}
       <div className="card-image-container">
         {firstImage ? (
           <Image
@@ -114,7 +106,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
       
       <div className="card-details">
-        {/* Title */}
         <div>
           <div className="card-title-container">
             <h3 
@@ -148,7 +139,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
         
         
-        {/* Two Buttons Side by Side */}
         <div className="card-button-row">
           <Link href={`/product/${product.handle}`} className="card-view-btn">
             View Product

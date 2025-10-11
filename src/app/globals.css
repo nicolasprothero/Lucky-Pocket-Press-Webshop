@@ -1,3 +1,25 @@
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('/fonts/GeneralSans-Regular.woff2') format('woff2'),
+       url('/fonts/GeneralSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('/fonts/GeneralSans-Light.woff2') format('woff2'),
+       url('/fonts/GeneralSans-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+.kosugi-maru-regular {
+  font-family: "Kosugi Maru", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,21 +28,43 @@
 
 :root {
   --llp-red: #F85246;
+  --llp-red-dark: #E0433A;
+
   --llp-white: #FFF7E8;
   --llp-black: #444444;
+  
   --llp-background: #FFFCF7;
   --llp-beige: #FFF7E8;
+  
+  --llp-gray-bg: #ECE9E4;
+  --llp-gray: #ADABA7;
+
+  --font-size-small: 0.75rem;
+  --font-size-regular: 0.9rem;
+  --font-size-subtitle: 1.2rem;
+  --font-size-title: 1.8rem;
+  --font-size-megatitle: 3rem;
+
+  --font-secondary: 'GeneralSans', Arial, sans-serif;
 }
 
 html {
   background-color: var(--llp-red);
 }
 
+html.has-update-banner-homepage {
+  background-color: var(--llp-beige);
+}
+
 body {
   background: var(--llp-background);
   color: var(--llp-black);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Kosugi Maru', Arial, Helvetica, sans-serif;
   line-height: 1.6;
+}
+
+button {
+  font-family: 'Kosugi Maru', Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -41,7 +85,6 @@ body {
   }
 }
 
-/* Basic layout utilities */
 .flex {
   display: flex;
 }
@@ -62,7 +105,6 @@ body {
   display: none;
 }
 
-/* Make footer sticky on homepage */
 body:has(.home-page) footer {
   position: fixed;
   bottom: 0;
@@ -71,7 +113,6 @@ body:has(.home-page) footer {
   z-index: 20;
 }
 
-/* Hide jump to top button on homepage without affecting layout */
 body:has(.home-page) .footer-jump-top-btn {
   opacity: 0;
   pointer-events: none;

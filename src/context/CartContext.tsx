@@ -5,24 +5,24 @@ import { Cart, CartItem } from '@/types';
 import { createCheckout } from '@/lib/api';
 
 interface CartState {
-    cart: Cart;
-    isLoading: boolean;
+  cart: Cart;
+  isLoading: boolean;
 }
 
 type CartAction =
-    | { type: 'ADD_ITEM'; payload: CartItem }
-    | { type: 'REMOVE_ITEM'; payload: string }
-    | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
-    | { type: 'CLEAR_CART' }
-    | { type: 'SET_LOADING'; payload: boolean }
-    | { type: 'LOAD_CART'; payload: Cart };
+  | { type: 'ADD_ITEM'; payload: CartItem }
+  | { type: 'REMOVE_ITEM'; payload: string }
+  | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
+  | { type: 'CLEAR_CART' }
+  | { type: 'SET_LOADING'; payload: boolean }
+  | { type: 'LOAD_CART'; payload: Cart };
 
 interface CartContextType extends CartState {
-    addItem: (item: CartItem) => void;
-    removeItem: (id: string) => void;
-    updateQuantity: (id: string, quantity: number) => void;
-    clearCart: () => void;
-    checkout: () => Promise<void>;
+  addItem: (item: CartItem) => void;
+  removeItem: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
+  clearCart: () => void;
+  checkout: () => Promise<void>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -126,7 +126,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const [isHydrated, setIsHydrated] = useState(false);
 
-  // Load cart from localStorage on mount
   useEffect(() => {
     setIsHydrated(true);
     const savedCart = localStorage.getItem('cart');
@@ -140,7 +139,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  // Save cart to localStorage whenever cart changes (only after hydration)
   useEffect(() => {
     if (isHydrated) {
       localStorage.setItem('cart', JSON.stringify(state.cart));
@@ -169,18 +167,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
 
     dispatch({ type: 'SET_LOADING', payload: true });
-    
+
     try {
-      // Convert cart items to Shopify line items format
       const lineItems = state.cart.items.map(item => ({
         variantId: item.variantId,
         quantity: item.quantity
       }));
 
-      // Create checkout and get the URL
       const checkoutUrl = await createCheckout(lineItems);
-      
-      // Redirect to Shopify checkout
+
       window.location.href = checkoutUrl;
     } catch (error) {
       console.error('Checkout error:', error);

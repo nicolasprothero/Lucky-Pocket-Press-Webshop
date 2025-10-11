@@ -1,4 +1,3 @@
-/* Events Page Styles */
 .events-page {
   min-height: 100vh;
   background-color: var(--llp-background);
@@ -9,7 +8,6 @@
   margin: 1.5rem auto;
 }
 
-/* Mobile styles */
 @media (max-width: 639px) {
   .events-container {
     padding: 1.5rem 2rem;
@@ -34,7 +32,7 @@
 }
 
 .events-title {
-  font-size: 1.875rem;
+  font-size: var(--font-size-title);
   font-weight: 200;
   color: var(--llp-red);
   position: relative;
@@ -56,8 +54,10 @@
 }
 
 .events-description {
-  font-size: 0.9rem;
+  font-size: var(--font-size-regular);
   color: var(--llp-red);
+  font-family: var(--font-secondary);
+  font-weight: 400;
   line-height: 1.4;
   position: relative;
   max-width: 500px;
@@ -84,7 +84,6 @@
   align-items: center;
 }
 
-/* Event Card Animation Wrapper */
 .event-card-wrapper {
   opacity: 0;
   transform: translateY(20px);
@@ -100,19 +99,17 @@
   }
 }
 
-/* Empty State */
 .no-events {
   text-align: center;
   padding: 3rem 0;
 }
 
 .no-events p {
-  color: #6b7280;
-  font-size: 1.125rem;
+  color: var(--llp-gray);
+  font-size: var(--font-size-regular);
   margin: 0.5rem 0;
 }
 
-/* Loading State */
 .events-loading {
   text-align: center;
   padding: 3rem 0;
@@ -137,31 +134,29 @@
 }
 
 .events-loading p {
-  color: #6b7280;
-  font-size: 1.125rem;
+  color: var(--llp-gray);
+  font-size: var(--font-size-regular);
 }
 
-/* Error State */
 .events-error {
   text-align: center;
   padding: 3rem 0;
 }
 
 .events-error p {
-  color: #6b7280;
-  font-size: 1.125rem;
+  color: var(--llp-gray);
+  font-size: var(--font-size-regular);
   margin: 0.5rem 0;
 }
 
 .error-detail {
-  font-size: 0.875rem;
+  font-size: var(--font-size-regular);
   color: #ef4444;
 }
 
-/* Responsive adjustments */
 @media (max-width: 639px) {
   .events-title {
-    font-size: 1.5rem;
+    font-size: var(--font-size-title);
   }
   
   .events-header {
